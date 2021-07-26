@@ -7,7 +7,7 @@ services:
         - NODE_ENV=${NODE_ENV}
     container_name: zenvia-project
     ports:
-      - '3002:3002'
+      - '3000:3000'
     command: 'yarn start'
     restart: always
 
