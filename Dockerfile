@@ -1,0 +1,13 @@
+FROM node:12
+
+ARG NODE_ENV
+ENV APP_ROOT /src
+ENV NODE_ENV=${NODE_ENV}
+
+RUN mkdir ${APP_ROOT}
+WORKDIR ${APP_ROOT}
+ADD . ${APP_ROOT}
+
+RUN yarn && yarn build
+
+ENV HOST 0.0.0.0

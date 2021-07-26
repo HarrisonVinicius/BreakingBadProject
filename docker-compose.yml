@@ -1,0 +1,25 @@
+version: '3.6'
+services:
+  nuxt:
+    build:
+      context: ./
+      args:
+        - NODE_ENV=${NODE_ENV}
+    container_name: zenvia-project
+    ports:
+      - '3002:3002'
+    command: 'yarn start'
+    restart: always
+
+  nginx:
+    image: library/nginx:1.19.0
+    container_name: nginx
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - nuxt
+    restart: unless-stopped
+    links:
+      - nuxt
